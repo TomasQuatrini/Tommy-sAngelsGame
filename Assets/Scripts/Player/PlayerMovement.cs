@@ -6,28 +6,38 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-   // Speed of movement
-    public float velocity = 5.0f;
+    [SerializeField] private float velocity = 5.0f; // Speed of movement. Editable speed in Unity
+    private Rigidbody2D _rb2D; // Reference to the Rigidbody2D of the object
+    private Vector2 _movementInput; // Create a movement vector
 
-    // Reference to the Rigidbody2D of the object
-    private Rigidbody2D _rb;
-
-    void Start()
+    void Awake()
     {
         // Get the reference to the Rigidbody2D
-        _rb = GetComponent<Rigidbody2D>();
+        _rb2D = GetComponent<Rigidbody2D>();
+        
+        if (_rb2D == null)
+        {
+            Debug.LogError($"{name} has not Rigidbody2D");
+        }
+    }
+    
+    void Update()
+    {
+        HandleInput(); // Read keyboard inputs
     }
 
     void FixedUpdate()
     {
-        // Read keyboard inputs
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
+        MovePlayer(); // Apply movement to Rigidbody2D
+    }
 
-        // Create a movement vector
-        Vector2 movement = new Vector2(movementHorizontal, movementVertical);
+    private void HandleInput()
+    {
+        _movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+    }
 
-        // Apply movement to the Rigidbody2D
-        _rb.MovePosition(_rb.position + movement * velocity * Time.deltaTime);
+    private void MovePlayer()
+    {
+        _rb2D.MovePosition(_rb2D.position + _movementInput * velocity * Time.fixedDeltaTime);
     }
 }
