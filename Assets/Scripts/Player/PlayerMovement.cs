@@ -34,7 +34,7 @@ public class PlayerMovement1 : MonoBehaviour
     private void HandleInput()
     {
         _movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Debug.Log($"Movement: {_movementInput}");
+        //Debug.Log($"Movement: {_movementInput}");
     }
 
     private void MovePlayer()
