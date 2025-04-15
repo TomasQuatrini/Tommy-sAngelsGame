@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     // Reference to the Life ScriptableObject
     public Health health;
+    public BoxCollider2D boxCollider2D;
 
     private void Start()
     {
@@ -16,6 +17,10 @@ public class PlayerHealth : MonoBehaviour
         }
         health.SetHealth(100, 100);
         Debug.Log("Player health set to: " + health.CurrentHealth);
+    }
+    void Update()
+    {
+        HandleInput();
     }
 
     // Method that reduces the player's life
@@ -43,16 +48,16 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            TakeDamage(30);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
             TakeHealth(20);
         }
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        HandleInput();
+        Debug.Log("Se colisiono con los bordes");
+        if (collision.gameObject.CompareTag("Edges"))
+        {
+            TakeDamage(30);
+        }
     }
 }
