@@ -3330,6 +3330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 11400000, guid: 2ebb9aa66dd09604e845c9bd56ab15c2, type: 2}
+  boxCollider2D: {fileID: 1781402356}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
