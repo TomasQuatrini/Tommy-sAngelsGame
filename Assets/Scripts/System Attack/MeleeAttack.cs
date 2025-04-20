@@ -5,10 +5,8 @@ using UnityEngine;
 // Class that implements the melee attack state
 public class MeleeAttack : AttackState
 {
-    // Method that is called when a melee attack is performed
-    public override void Attack(PlayerAttack playerAttack)
+    public override void Attack(GameObject attacker, GameObject target, Health health, int damage)
     {
-        // Logic to perform a melee attack
-        Debug.Log("Melee attack performed");
+        health.ReduceLife(damage);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class RangedAttack : AttackState
 {
     // Method that is called when a ranged attack is performed
-    public override void Attack(PlayerAttack playerAttack)
+    public override void Attack(GameObject attacker, GameObject target, Health health, int damage)
     {
         // Logic to perform a ranged attack
         Debug.Log("Ranged attack performed");
