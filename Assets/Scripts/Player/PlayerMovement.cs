@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine;
 
-public class PlayerMovement1 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float velocity = 5.0f; // Speed of movement. Editable speed in Unity
     private Rigidbody2D _rb2D; // Reference to the Rigidbody2D of the object
