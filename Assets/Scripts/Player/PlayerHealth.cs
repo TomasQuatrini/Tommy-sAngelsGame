@@ -21,12 +21,6 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         HandleInput();
-    }
-
-    // Method that reduces the player's life
-    public void TakeDamage(int amount)
-    {
-        health.ReduceLife(amount);
         if (health.CurrentHealth <= 0)
         {
             // The player has died
@@ -49,15 +43,6 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             TakeHealth(20);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Se colisiono con los bordes");
-        if (collision.gameObject.CompareTag("Edges"))
-        {
-            TakeDamage(30);
         }
     }
 }
