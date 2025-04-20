@@ -2,43 +2,83 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
+// Handles player movement.
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float velocity = 5.0f; // Speed of movement. Editable speed in Unity
-    private Rigidbody2D _rb2D; // Reference to the Rigidbody2D of the object
-    private Vector2 _movementInput; // Create a movement vector
+    // Player movement speed.
+    [SerializeField] private float velocity = 5.0f;
 
+    // Rigidbody2D reference.
+    private Rigidbody2D _rb2D;
+
+    // Movement input.
+    private Vector2 _movementInput;
+
+    // Flag to check if player is being pushed.
+    public bool isBeingPushed = false;
+
+    // Duration of push.
+    public float pushDuration = 0.4f;
+
+    // Initialize Rigidbody2D component.
     void Awake()
     {
-        // Get the reference to the Rigidbody2D
+        // Get Rigidbody2D component.
         _rb2D = GetComponent<Rigidbody2D>();
-        
+
+        // Check if Rigidbody2D component is missing.
         if (_rb2D == null)
         {
-            Debug.LogError($"{name} has not Rigidbody2D");
+            Debug.LogError("Rigidbody2D component is missing");
         }
     }
-    
+
+    // Handle input.
     void Update()
     {
-        HandleInput(); // Read keyboard inputs
+        // Get movement input.
+        HandleInput();
     }
 
+    // Move player.
     void FixedUpdate()
     {
-        MovePlayer(); // Apply movement to Rigidbody2D with velocity
+        // Update player position.
+        MovePlayer();
     }
 
+    // Get movement input from player.
     private void HandleInput()
     {
+        // Get horizontal and vertical input.
         _movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //Debug.Log($"Movement: {_movementInput}");
     }
 
+    // Move player based on input.
     private void MovePlayer()
     {
-        _rb2D.velocity = _movementInput.normalized * velocity;
+        // Check if player is not being pushed.
+        if (!isBeingPushed)
+        {
+            // Set player velocity.
+            _rb2D.velocity = _movementInput.normalized * velocity;
+        }
+    }
+
+    // Push player.
+    public void PushPlayer()
+    {
+        // Set flag to true.
+        isBeingPushed = true;
+
+        // Stop pushing after duration.
+        Invoke("StopPushing", pushDuration);
+    }
+
+    // Stop pushing player.
+    private void StopPushing()
+    {
+        // Set flag to false.
+        isBeingPushed = false;
     }
 }
