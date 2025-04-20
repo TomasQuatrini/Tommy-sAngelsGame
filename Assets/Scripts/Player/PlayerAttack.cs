@@ -15,9 +15,8 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Method that performs an attack
-    public void Attack()
+    public void Attack(GameObject target, Health health, int damage)
     {
-        // Calls the attack method of the current state
-        currentAttackState.Attack(this);
+        currentAttackState.Attack(gameObject, target, health, damage);
     }
 }
