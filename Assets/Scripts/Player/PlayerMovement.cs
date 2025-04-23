@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Flag to check if player is being pushed.
     public bool isBeingPushed = false;
+    public Vector2 MovementDirection => _movementInput.normalized;
 
     // Duration of push.
     public float pushDuration = 0.4f;
