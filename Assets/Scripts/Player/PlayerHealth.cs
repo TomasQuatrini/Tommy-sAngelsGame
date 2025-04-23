@@ -4,44 +4,36 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Reference to the Life ScriptableObject
+    // Reference to the Health
     public Health health;
     public BoxCollider2D boxCollider2D;
 
     private void Start()
     {
-        if (!health)
-        {
-            Debug.LogError("SystemHealth asset not assigned in the inspector.");
-            return;
-        }
+        health = new Health();
         health.SetHealth(100, 100);
         Debug.Log("Player health set to: " + health.CurrentHealth);
     }
+
     void Update()
     {
         HandleInput();
-    }
-
-    // Method that reduces the player's life
-    public void TakeDamage(int amount)
-    {
-        health.ReduceLife(amount);
         if (health.CurrentHealth <= 0)
         {
             // The player has died
             Debug.Log("Player died");
+            // Puedes agregar lógica para manejar la muerte del jugador aquí
         }
     }
 
     public void TakeHealth(int amount)
     {
         health.IncreaseLife(amount);
+        if (health.CurrentHealth == health.MaxHealth)
         {
             // The player has healed to max
             Debug.Log("Player has healed to max");
         }
-
     }
 
     private void HandleInput()
@@ -49,15 +41,6 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             TakeHealth(20);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Se colisiono con los bordes");
-        if (collision.gameObject.CompareTag("Edges"))
-        {
-            TakeDamage(30);
         }
     }
 }
