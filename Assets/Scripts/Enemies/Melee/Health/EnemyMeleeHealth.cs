@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class EnemyMeleeHealth : MonoBehaviour
 {
-    public Health healthSO; // Asignar el scriptable object Health en el inspector
-    private int currentHealth;
+    public Health health;
+    private int _currentHealth;
 
     private void Start()
     {
-        currentHealth = healthSO.MaxHealth;
+        health = new Health();
+        health.SetHealth(100, 100);
+        _currentHealth = health.CurrentHealth;
     }
 
     void Update()
     {
-        if (currentHealth <= 0)
+        _currentHealth = health.CurrentHealth;
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -25,6 +28,16 @@ public class EnemyMeleeHealth : MonoBehaviour
         // Lógica para matar al enemigo
         Debug.Log("Enemigo muerto");
         Destroy(gameObject);
+    }
+
+    public void ReduceLife(int amount)
+    {
+        health.ReduceLife(amount);
+    }
+
+    public IHealth GetHealth()
+    {
+        return health;
     }
 }
 
