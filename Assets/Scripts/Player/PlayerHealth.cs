@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Reference to the Life ScriptableObject
+    // Reference to the Health
     public Health health;
     public BoxCollider2D boxCollider2D;
 
     private void Start()
     {
-        if (!health)
-        {
-            Debug.LogError("SystemHealth asset not assigned in the inspector.");
-            return;
-        }
+        health = new Health();
         health.SetHealth(100, 100);
         Debug.Log("Player health set to: " + health.CurrentHealth);
     }
+
     void Update()
     {
         HandleInput();
@@ -25,17 +22,18 @@ public class PlayerHealth : MonoBehaviour
         {
             // The player has died
             Debug.Log("Player died");
+            // Puedes agregar lógica para manejar la muerte del jugador aquí
         }
     }
 
     public void TakeHealth(int amount)
     {
         health.IncreaseLife(amount);
+        if (health.CurrentHealth == health.MaxHealth)
         {
             // The player has healed to max
             Debug.Log("Player has healed to max");
         }
-
     }
 
     private void HandleInput()
