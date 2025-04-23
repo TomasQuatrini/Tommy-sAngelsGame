@@ -18,4 +18,9 @@ public abstract class Item : ScriptableObject
 
     // Method to use the item
     public abstract void Use();
+
+    public void Pickup(Inventory inventory)
+    {
+        inventory.PickupItem(this);
+    }
 }
