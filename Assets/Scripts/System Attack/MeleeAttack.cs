@@ -5,8 +5,15 @@ using UnityEngine;
 // Class that implements the melee attack state
 public class MeleeAttack : AttackState
 {
-    public override void Attack(GameObject attacker, GameObject target, Health health, int damage)
+    public override void Attack(GameObject attacker, GameObject target, IHealth health, int damage)
     {
-        health.ReduceLife(damage);
+        if (health != null)
+        {
+            health.ReduceLife(damage);
+        }
+        else
+        {
+            Debug.LogError("El objetivo no tiene un componente de salud");
+        }
     }
 }

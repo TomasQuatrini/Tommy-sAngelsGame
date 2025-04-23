@@ -6,9 +6,17 @@ using UnityEngine;
 public class RangedAttack : AttackState
 {
     // Method that is called when a ranged attack is performed
-    public override void Attack(GameObject attacker, GameObject target, Health health, int damage)
+    public override void Attack(GameObject attacker, GameObject target, IHealth health, int damage)
     {
-        // Logic to perform a ranged attack
-        Debug.Log("Ranged attack performed");
+        if (health != null)
+        {
+            // Logic to perform a ranged attack
+            health.ReduceLife(damage);
+            Debug.Log("Ranged attack performed");
+        }
+        else
+        {
+            Debug.LogError("El objetivo no tiene un componente de salud");
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class AttackState
 {
     // Abstract method that is called when an attack is performed
-    public abstract void Attack(GameObject attacker, GameObject target, Health health, int damage);
+    public abstract void Attack(GameObject attacker, GameObject target, IHealth health, int damage);
 }
 
 
