@@ -6,6 +6,7 @@ public class EnemyMeleeHealth : MonoBehaviour
 {
     public Health health;
     private int _currentHealth;
+    public KeySpawner keySpawner;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class EnemyMeleeHealth : MonoBehaviour
     {
         // Lógica para matar al enemigo
         Debug.Log("Enemigo muerto");
+        keySpawner.EnemyKilled();
         Destroy(gameObject);
     }
 
