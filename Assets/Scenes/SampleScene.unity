@@ -723,7 +723,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1174,6 +1174,7 @@ MonoBehaviour:
   health:
     _maxHealth: 100
     _currentHealth: 100
+  keySpawner: {fileID: 1974412908}
 --- !u!114 &1008007066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4410,6 +4411,7 @@ GameObject:
   - component: {fileID: 1974412906}
   - component: {fileID: 1974412905}
   - component: {fileID: 1974412907}
+  - component: {fileID: 1974412908}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -4543,6 +4545,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 11400000, guid: 5fab10cf7c7eb584794ae096e8d87f0a, type: 2}
   inventory: {fileID: 49212367}
+--- !u!114 &1974412908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974412902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f77cba4b8c1c24eac310d9903e9957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyObject: {fileID: 1974412902}
+  enemiesToKill: 1
 --- !u!1 &2112164086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4664,6 +4680,7 @@ MonoBehaviour:
   health:
     _maxHealth: 100
     _currentHealth: 100
+  keySpawner: {fileID: 1974412908}
 --- !u!114 &2112164091
 MonoBehaviour:
   m_ObjectHideFlags: 0

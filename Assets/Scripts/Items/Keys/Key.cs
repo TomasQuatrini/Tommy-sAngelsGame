@@ -14,6 +14,6 @@ public class Key : Item
     // Use the key
     public override void Use()
     {
-        // La lógica para usar la llave se implementará en la puerta
+        // The logic for using the key will be implemented in the door
     }
 }
