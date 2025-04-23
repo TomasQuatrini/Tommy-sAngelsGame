@@ -25,28 +25,25 @@ public class PlayerAttack : MonoBehaviour
     public void Attack(GameObject target)
     {
         EnemyMeleeHealth enemyHealth = target.GetComponent<EnemyMeleeHealth>();
-        if (enemyHealth != null)
-        {
-            if (enemyHealth.GetHealth() != null)
-            {
-                if (meleeAttack != null)
-                {
-                    meleeAttack.Attack(gameObject, target, enemyHealth.GetHealth(), damageMelee);
-                }
-                else
-                {
-                    Debug.LogError("MeleeAttack no está asignado");
-                }
-            }
-            else
-            {
-                Debug.LogError("El objetivo no tiene un componente de salud");
-            }
-        }
-        else
+        if (enemyHealth == null)
         {
             Debug.LogError("El objetivo no tiene un componente EnemyMeleeHealth");
+            return;
         }
+
+        if (enemyHealth.GetHealth() == null)
+        {
+            Debug.LogError("El objetivo no tiene un componente de salud");
+            return;
+        }
+
+        if (meleeAttack == null)
+        {
+            Debug.LogError("MeleeAttack no está asignado");
+            return ;
+        }
+
+        meleeAttack.Attack(gameObject, target, enemyHealth.GetHealth(), damageMelee);
     }
 
     // Handle player input.
