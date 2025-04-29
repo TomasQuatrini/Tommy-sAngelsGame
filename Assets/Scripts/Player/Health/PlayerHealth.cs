@@ -8,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     // Reference to the Health component
     private Health health;
     public BoxCollider2D boxCollider2D;
+    [SerializeField] float _currentHealth;
+    [SerializeField] float _maxHealth;
+    [SerializeField] private HealthBar healthBar;
 
     // Reference to the player movement script
     public PlayerMovement playerMovement;
@@ -15,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     // Initialize health component and set initial health value
     private void Start()
     {
+        healthBar.InitializeHealthBar(_currentHealth);
         // Get the Health component attached to this game object
         health = GetComponent<Health>();
         // Set the initial health value
@@ -26,7 +30,10 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.ChangeCurrentHealth(_currentHealth);
+        healthBar.ChangeMaxHealth(_maxHealth);
         TakingDamage();
+        GetHealthValue();
         // Check if the player's health has reached zero
         if (health.CurrentHealth <= 0)
         {
@@ -60,5 +67,11 @@ public class PlayerHealth : MonoBehaviour
             // Reset the hit status
             health.ResetHit();
         }
+    }
+
+    private void GetHealthValue()
+    {
+        _currentHealth = health.CurrentHealth;
+        _maxHealth = health.MaxHealth;
     }
 }
