@@ -5,25 +5,30 @@ using UnityEngine;
 public class EnemyMeleeHealth : MonoBehaviour
 {
     // Reference to the enemy's health
-    public Health health;
-    private int _currentHealth;
+    private Health health;
     // Reference to the KeySpawner
     public KeySpawner keySpawner;
 
     private void Start()
     {
-        // Initialize the enemy's health
-        health = new Health();
-        health.SetHealth(100, 100);
-        _currentHealth = health.CurrentHealth;
+        // Get the Health component attached to this game object
+        health = GetComponent<Health>();
+        // Check if health is not null
+        if (health != null)
+        {
+            // Initialize the enemy's health
+            health.Initialize(100, 100); // Pasa los parámetros correspondientes
+        }
+        else
+        {
+            Debug.LogError("No Health component found");
+        }
     }
 
     void Update()
     {
-        // Update the current health
-        _currentHealth = health.CurrentHealth;
         // Check if the enemy is dead
-        if (_currentHealth <= 0)
+        if (health.CurrentHealth <= 0)
         {
             Die();
         }

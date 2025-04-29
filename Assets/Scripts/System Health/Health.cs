@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Health : IHealth
+public class Health : MonoBehaviour, IHealth
 {
     // Maximum life of the character
     [SerializeField] private int _maxHealth = 100;
 
     // Current life of the character
     [SerializeField] private int _currentHealth = 100;
-    
+
+    [SerializeField] private bool hit = false;
+
     // Properties that allow access to life data
     public int MaxHealth { get { return _maxHealth; } }
     public int CurrentHealth { get { return _currentHealth; } }
+
+    private void Start()
+    {
+        Initializing();
+    }
 
     // Method that reduces the character's life
     public void ReduceLife(int amount)
@@ -24,6 +31,7 @@ public class Health : IHealth
         {
             _currentHealth = 0;
         }
+        hit = true;
     }
 
     // Method that increases the character's life
@@ -37,15 +45,24 @@ public class Health : IHealth
         }
     }
 
-    // Method that sets the character's health
-    public void SetHealth(int maxHealth, int currentHealth)
-    {
-        this._maxHealth = maxHealth;
-        this._currentHealth = currentHealth;
-    }
-
-    public void Initialize()
+    public void Initializing()
     {
         _currentHealth = _maxHealth;
+    }
+
+    public bool GetHitStatus()
+    {
+        return hit;
+    }
+
+    public void ResetHit()
+    {
+        hit = false;
+    }
+
+    public void Initialize(int maxHealth, int currentHealth)
+    {
+        _maxHealth = maxHealth;
+        _currentHealth = currentHealth;
     }
 }

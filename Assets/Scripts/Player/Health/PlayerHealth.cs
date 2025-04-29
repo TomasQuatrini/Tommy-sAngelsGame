@@ -2,45 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Player health script that handles player health and damage
 public class PlayerHealth : MonoBehaviour
 {
-    // Reference to the Health
-    public Health health;
+    // Reference to the Health component
+    private Health health;
     public BoxCollider2D boxCollider2D;
 
+    // Reference to the player movement script
+    public PlayerMovement playerMovement;
+
+    // Initialize health component and set initial health value
     private void Start()
     {
-        health = new Health();
-        health.SetHealth(100, 100);
+        // Get the Health component attached to this game object
+        health = GetComponent<Health>();
+        // Set the initial health value
+        health.Initialize(100, 100);
+        // Log the initial health value
         Debug.Log("Player health set to: " + health.CurrentHealth);
     }
 
+    // Update is called once per frame
     void Update()
     {
-        HandleInput();
+        TakingDamage();
+        // Check if the player's health has reached zero
         if (health.CurrentHealth <= 0)
         {
             // The player has died
             Debug.Log("Player died");
-            // Puedes agregar lógica para manejar la muerte del jugador aquí
+            // Add logic to handle player death here
         }
     }
 
+    // Method to heal the player
     public void TakeHealth(int amount)
     {
+        // Increase the player's health
         health.IncreaseLife(amount);
+        // Check if the player's health has reached maximum
         if (health.CurrentHealth == health.MaxHealth)
         {
-            // The player has healed to max
+            // The player has healed to maximum
             Debug.Log("Player has healed to max");
         }
     }
 
-    private void HandleInput()
+    // Method to handle player damage
+    private void TakingDamage()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        // Check if the player has been hit
+        if (health.GetHitStatus())
         {
-            TakeHealth(20);
+            // Push the player back
+            playerMovement.PushPlayer();
+            // Reset the hit status
+            health.ResetHit();
         }
     }
 }

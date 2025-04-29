@@ -49,5 +49,9 @@ public class Hitbox : MonoBehaviour
                 Debug.LogError("Enemy attack script no está asignado");
             }
         }
+        else if (collision.gameObject.CompareTag("Enemies"))
+        {
+            return;
+        }
     }
 }
