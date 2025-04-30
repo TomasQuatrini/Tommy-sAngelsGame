@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyMeleeHealth : MonoBehaviour
 {
     // Reference to the enemy's health
-    private Health health;
+    [SerializeField] Health health;
+    [SerializeField] HealthBarEnemies healthBarEnemies;
+    [SerializeField] float _currentHealth;
+    [SerializeField] float _maxHealth;
     // Reference to the KeySpawner
     public KeySpawner keySpawner;
 
@@ -32,6 +35,8 @@ public class EnemyMeleeHealth : MonoBehaviour
         {
             Die();
         }
+        CurrentHealth();
+        SetHealthBar();
     }
 
     private void Die()
@@ -54,5 +59,16 @@ public class EnemyMeleeHealth : MonoBehaviour
     public IHealth GetHealth()
     {
         return health;
+    }
+
+    public void CurrentHealth()
+    {
+        _currentHealth = health.CurrentHealth;
+        _maxHealth = health.MaxHealth;
+    }
+
+    private void SetHealthBar()
+    {
+        healthBarEnemies.UpdateHealthbar(_maxHealth, _currentHealth);
     }
 }
