@@ -77,30 +77,25 @@ public class EnemyMeleeMovement : MonoBehaviour
 
     private void AdjustVision()
     {
-        Vector2 direction = new Vector2(agent.velocity.x, agent.velocity.y).normalized;
-
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (agent.velocity.x > Mathf.Abs(agent.velocity.y))
         {
-            if (direction.x > 0)
-            {
-                visionTransform.localScale = new Vector3(-1, 1, 1);
-                hitboxTransform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                visionTransform.localScale = new Vector3(1, 1, 1);
-                hitboxTransform.localScale = new Vector3(1, 1, 1); 
-            }
+            visionTransform.rotation = Quaternion.Euler(0, 0, 180);
+            hitboxTransform.rotation = Quaternion.Euler(0, 0, 180);
         }
-        else if (direction.y > 0)
+        else if (agent.velocity.x < -Mathf.Abs(agent.velocity.y))
         {
-            // Si se mueve hacia arriba, mantener la orientación actual
-            // No es necesario cambiar la escala
+            visionTransform.rotation = Quaternion.Euler(0, 0, 0);
+            hitboxTransform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (direction.y < 0)
+        else if (agent.velocity.y > Mathf.Abs(agent.velocity.x))
         {
-            // Si se mueve hacia abajo, mantener la orientación actual
-            // No es necesario cambiar la escala
+            visionTransform.rotation = Quaternion.Euler(0, 0, -90);
+            hitboxTransform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else
+        {
+            visionTransform.rotation = Quaternion.Euler(0, 0, 90);
+            hitboxTransform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }
 

@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Handles melee attacks for enemy.
 public class EnemyMeleeAttack : MonoBehaviour
 {
-    // Perform melee attack on target.
+    // Referencia al hitbox
+    public Hitbox hitbox;
+
+    // Cooldown entre ataques
+    public float cooldown = 2f;
+
+    // Indica si el enemigo puede atacar
+    public bool canAttack = true;
+
     public void Attack(GameObject target)
     {
         Health health = target.GetComponentInChildren<Health>();
@@ -20,8 +27,11 @@ public class EnemyMeleeAttack : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void ResetAttack()
     {
-
+        // Activa la capacidad de atacar después del cooldown
+        canAttack = true;
+        // Desactiva el collider del hitbox
+        hitbox.GetComponent<Collider2D>().enabled = false;
     }
 }
