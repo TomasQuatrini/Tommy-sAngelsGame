@@ -1,61 +1,111 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-// Abstract base class for enemy melee movement.
-public abstract class EnemyMeleeMovement : MonoBehaviour
+public class EnemyMeleeMovement : MonoBehaviour
 {
-    // Movement speed.
-    public float speed = 4f;
+    // Patrol points
+    private Transform[] patrolPointTransforms;
+    private Vector2[] patrolPoints;
 
-    // Target position.
-    protected Vector2 targetPosition;
+    // Reference to the navigation agent
+    private NavMeshAgent agent;
 
-    // Flag to determine movement direction.
-    protected bool isMovingTowardsTarget = true;
+    // Current patrol point index
+    private int currentPatrolIndex = 0;
 
-    // Update movement.
-    protected virtual void Update()
+    // Vision transform
+    private Transform visionTransform;
+    private Transform hitboxTransform;
+
+    private void Start()
     {
-        // Patrol between targets.
-        Patrol();
+        // Initialize patrol points
+        patrolPointTransforms = new Transform[2];
+        patrolPointTransforms[0] = transform.Find("Points/Point1").transform;
+        patrolPointTransforms[1] = transform.Find("Points/Point2").transform;
+
+        // Disable patrol point sprite renderers
+        foreach (Transform patrolPoint in patrolPointTransforms)
+        {
+            patrolPoint.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        // Get patrol point positions
+        patrolPoints = new Vector2[2];
+        patrolPoints[0] = new Vector2(patrolPointTransforms[0].position.x, patrolPointTransforms[0].position.y);
+        patrolPoints[1] = new Vector2(patrolPointTransforms[1].position.x, patrolPointTransforms[1].position.y);
+
+        // Initialize navigation agent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        // Find vision transform
+        visionTransform = transform.Find("Vision");
+        if (visionTransform == null)
+        {
+            Debug.LogError("Vision GameObject not found");
+        }
+        hitboxTransform = transform.Find("HitboxE");
+        if (hitboxTransform == null)
+        {
+            Debug.LogError("Hitbox GameObject not found");
+        }
+
+        // Set initial destination
+        agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
     }
 
-    // Abstract method for patrolling.
-    protected abstract void Patrol();
-
-    // Move towards target position.
-    protected void MoveTowardsTarget(Vector2 target)
+    private void Update()
     {
-        // Update position.
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        FlipPatrol();
+        AdjustVision();
+    }
 
-        // Check if target is reached.
-        if (Vector2.Distance(transform.position, target) < 0.01f)
+    private void FlipPatrol()
+    {
+        // Check if we've reached the current patrol point
+        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), patrolPoints[currentPatrolIndex]) < 0.1f)
         {
-            // Flip movement direction.
-            isMovingTowardsTarget = !isMovingTowardsTarget;
-
-            // Call target reached logic.
-            OnTargetReached();
+            // Move to the next patrol point
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+            agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
         }
     }
 
-    // Get movement direction.
-    public Vector2 GetDirection()
+    private void AdjustVision()
     {
-        // Determine direction based on movement type.
-        if (this is EnemyMeleeHorizontalMovement)
+        Vector2 direction = new Vector2(agent.velocity.x, agent.velocity.y).normalized;
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            return isMovingTowardsTarget ? Vector2.right : Vector2.left;
+            if (direction.x > 0)
+            {
+                visionTransform.localScale = new Vector3(-1, 1, 1);
+                hitboxTransform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                visionTransform.localScale = new Vector3(1, 1, 1);
+                hitboxTransform.localScale = new Vector3(1, 1, 1); 
+            }
         }
-        else if (this is EnemyMeleeVerticalMovement)
+        else if (direction.y > 0)
         {
-            return isMovingTowardsTarget ? Vector2.up : Vector2.down;
+            // Si se mueve hacia arriba, mantener la orientación actual
+            // No es necesario cambiar la escala
         }
-        return Vector2.zero;
+        else if (direction.y < 0)
+        {
+            // Si se mueve hacia abajo, mantener la orientación actual
+            // No es necesario cambiar la escala
+        }
     }
 
-    // Abstract method for target reached logic.
-    protected abstract void OnTargetReached();
+    public Vector2 GetVelocity()
+    {
+        return new Vector2(agent.velocity.x, agent.velocity.y);
+    }
 }
