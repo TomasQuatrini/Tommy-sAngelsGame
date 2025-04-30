@@ -17,8 +17,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        meleeHitbox.SetActive(false);
         meleeAttack = new MeleeAttack();
+        meleeHitbox.GetComponent<Collider2D>().enabled = false;
+        meleeHitbox.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Perform an attack on a target.
@@ -52,22 +53,21 @@ public class PlayerAttack : MonoBehaviour
         // Check if the K key is pressed.
         if (Input.GetKeyDown(KeyCode.K))
         {
+            meleeHitbox.GetComponent<Collider2D>().enabled = true;
+            meleeHitbox.GetComponent<SpriteRenderer>().enabled = true;
             // Activate the melee hitbox.
-            meleeHitbox.SetActive(true);
-
             // You can add an attack effect here, such as an animation or sound.
-            // ...
-
             // Deactivate the melee hitbox after a short period of time.
-            Invoke(nameof(DesactivarHitbox), 0.2f); // 0.2 seconds
+            Invoke(nameof(DisableHitbox), 0.2f); // 0.2 seconds
         }
     }
 
-    // Deactivate the melee hitbox.
-    private void DesactivarHitbox()
+    // Disable the hitbox collider.
+    private void DisableHitbox()
     {
-        meleeHitbox.SetActive(false);
-    }
+        meleeHitbox.GetComponent<Collider2D>().enabled = false;
+        meleeHitbox.GetComponent<SpriteRenderer>().enabled = false;
+    }    
 
     // Update is called once per frame.
     private void Update()
