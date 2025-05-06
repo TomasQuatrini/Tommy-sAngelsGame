@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-    // Referencia al script de ataque
+    // Reference to the attack script
     public EnemyMeleeAttack attackScript;
+
+    // Reference to the movement script
+    public EnemyMeleeMovement movementScript;
 
     private bool playerInSight = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verifica si el jugador está dentro de la visión del enemigo
+        // Check if the player is within the vision
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInSight = true;
+            movementScript.SetChasing(true);
             StartCoroutine(AttackRoutine());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Verifica si el jugador salió de la visión del enemigo
+        // Check if the player has exited the vision
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInSight = false;
+            movementScript.SetChasing(false);
             StopAllCoroutines();
             attackScript.hitbox.GetComponent<Collider2D>().enabled = false;
             attackScript.hitbox.GetComponent<SpriteRenderer>().enabled = false;
@@ -38,16 +43,16 @@ public class Vision : MonoBehaviour
         {
             if (attackScript.canAttack)
             {
-                // Activa el collider del hitbox
+                // Activate the hitbox collider
                 attackScript.hitbox.GetComponent<Collider2D>().enabled = true;
                 attackScript.hitbox.GetComponent<SpriteRenderer>().enabled = true;
-                // Desactiva la capacidad de atacar durante el cooldown
+                // Disable the ability to attack during the cooldown
                 attackScript.canAttack = false;
                 yield return new WaitForSeconds(attackScript.cooldown);
-                // Desactiva el collider del hitbox
+                // Deactivate the hitbox collider
                 attackScript.hitbox.GetComponent<Collider2D>().enabled = false;
                 attackScript.hitbox.GetComponent<SpriteRenderer>().enabled = false;
-                // Reactiva la capacidad de atacar
+                // Reactivate the ability to attack
                 attackScript.canAttack = true;
             }
             else

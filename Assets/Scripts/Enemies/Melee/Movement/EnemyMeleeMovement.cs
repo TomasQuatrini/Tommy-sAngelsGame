@@ -19,40 +19,27 @@ public class EnemyMeleeMovement : MonoBehaviour
     private Transform visionTransform;
     private Transform hitboxTransform;
 
+    private bool isChasing = false;
+
     private void Start()
     {
         // Initialize patrol points
-        patrolPointTransforms = new Transform[2];
-        patrolPointTransforms[0] = transform.Find("Points/Point1").transform;
-        patrolPointTransforms[1] = transform.Find("Points/Point2").transform;
+        InitPatrolPoints();
 
         // Disable patrol point sprite renderers
-        foreach (Transform patrolPoint in patrolPointTransforms)
-        {
-            patrolPoint.GetComponent<SpriteRenderer>().enabled = false;
-        }
+        DisableSR();
 
         // Get patrol point positions
-        patrolPoints = new Vector2[2];
-        patrolPoints[0] = new Vector2(patrolPointTransforms[0].position.x, patrolPointTransforms[0].position.y);
-        patrolPoints[1] = new Vector2(patrolPointTransforms[1].position.x, patrolPointTransforms[1].position.y);
+        GetZonePatrol();
 
         // Initialize navigation agent
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        InitNavigation();
 
         // Find vision transform
-        visionTransform = transform.Find("Vision");
-        if (visionTransform == null)
-        {
-            Debug.LogError("Vision GameObject not found");
-        }
-        hitboxTransform = transform.Find("HitboxE");
-        if (hitboxTransform == null)
-        {
-            Debug.LogError("Hitbox GameObject not found");
-        }
+        FindVision();
+
+        // Find hitbox transform
+        FindHitbox();
 
         // Set initial destination
         agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
@@ -60,8 +47,25 @@ public class EnemyMeleeMovement : MonoBehaviour
 
     private void Update()
     {
-        FlipPatrol();
+        if (isChasing)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            FlipPatrol();
+        }
         AdjustVision();
+        FlipSprite();
+    }
+
+    public void SetChasing(bool chasing)
+    {
+        isChasing = chasing;
+        if (!chasing)
+        {
+            agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
+        }
     }
 
     private void FlipPatrol()
@@ -99,8 +103,85 @@ public class EnemyMeleeMovement : MonoBehaviour
         }
     }
 
+    private void ChasePlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+    }
+
     public Vector2 GetVelocity()
     {
         return new Vector2(agent.velocity.x, agent.velocity.y);
+    }
+
+    private void DisableSR()
+    {
+        foreach (Transform patrolPoint in patrolPointTransforms)
+        {
+            patrolPoint.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
+    private void GetZonePatrol()
+    {
+        if (patrolPointTransforms != null && patrolPointTransforms.Length >= 2)
+        {
+            patrolPoints = new Vector2[2];
+            patrolPoints[0] = new Vector2(patrolPointTransforms[0].position.x, patrolPointTransforms[0].position.y);
+            patrolPoints[1] = new Vector2(patrolPointTransforms[1].position.x, patrolPointTransforms[1].position.y);
+        }
+        else
+        {
+            Debug.LogError("Patrol points not initialized correctly");
+        }
+    }
+
+    private void InitNavigation()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
+
+    private void InitPatrolPoints()
+    {
+        patrolPointTransforms = new Transform[2];
+        patrolPointTransforms[0] = transform.Find("Points/Point1").transform;
+        patrolPointTransforms[1] = transform.Find("Points/Point2").transform;
+    }
+
+    private void FindVision()
+    {
+        visionTransform = transform.Find("Vision");
+        if (visionTransform == null)
+        {
+            Debug.LogError("Vision GameObject not found");
+        }
+    }
+
+    private void FindHitbox()
+    {
+        hitboxTransform = transform.Find("HitboxE");
+        if (hitboxTransform == null)
+        {
+            Debug.LogError("Hitbox GameObject not found");
+        }
+    }
+
+    private void FlipSprite()
+    {
+        if (agent.velocity.x > 0)
+        {
+            // Movement upwards
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (agent.velocity.x < 0)
+        {
+            // Movement downwards
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }
