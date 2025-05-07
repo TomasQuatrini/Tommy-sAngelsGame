@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Player health script that handles player health and damage
 public class PlayerHealth : MonoBehaviour
@@ -24,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         // Set the initial health value
         health.Initialize(100, 100);
         // Log the initial health value
-        Debug.Log("Player health set to: " + health.CurrentHealth);
+        Debug.Log($"Player health set to: {health.CurrentHealth}");
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
         {
             // The player has died
             Debug.Log("Player died");
-            // Add logic to handle player death here
+            Die();
         }
     }
 
@@ -73,5 +74,15 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth = health.CurrentHealth;
         _maxHealth = health.MaxHealth;
+    }
+    
+    void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void Die()
+    {
+        RestartScene();
     }
 }
