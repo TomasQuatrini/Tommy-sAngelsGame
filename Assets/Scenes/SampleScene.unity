@@ -512,8 +512,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 85.3
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 12.84
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -7900,7 +7900,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -747782856, guid: 735249818be30454b8ef63caa52af355, type: 3}
+  m_Sprite: {fileID: 2005628503, guid: 49199847c8a6068449738acab9fbf4bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7990,7 +7990,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 1}
+    oldSize: {x: 1.26, y: 1.92}
     newSize: {x: 1.2, y: 1.92}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8469,8 +8469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  offsetHorizontal: 0.5
-  offsetVertical: 0.7
+  offsetHorizontal: 1
+  offsetVertical: 1.4
   playerAttack: {fileID: 1781402358}
 --- !u!1001 &5883652327775235002
 PrefabInstance:
@@ -8486,11 +8486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630165761411756253, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.61
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 630165761411756253, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.67
+      value: 9.15
       objectReference: {fileID: 0}
     - target: {fileID: 1670363938189436119, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: movementScript
@@ -8506,11 +8506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098491078630321880, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.55
+      value: 11.85
       objectReference: {fileID: 0}
     - target: {fileID: 3098491078630321880, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.4
+      value: 3.44
       objectReference: {fileID: 0}
     - target: {fileID: 4546385797696042989, guid: 92db1ef048726ed4080a3489ab9e1070, type: 3}
       propertyPath: m_FlipX
