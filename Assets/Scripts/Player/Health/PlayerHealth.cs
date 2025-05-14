@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     // Reference to the Health component
-    private Health health;
+    private Health _health;
     public BoxCollider2D boxCollider2D;
     [SerializeField] float _currentHealth;
     [SerializeField] float _maxHealth;
-    [SerializeField] private HealthBar healthBar;
+    private HealthBar _healthBar;
 
     // Reference to the player movement script
     public PlayerMovement playerMovement;
@@ -19,24 +19,29 @@ public class PlayerHealth : MonoBehaviour
     // Initialize health component and set initial health value
     private void Start()
     {
-        healthBar.InitializeHealthBar(_currentHealth);
+        _healthBar = GameObject.FindObjectOfType<HealthBar>();
+        if (_healthBar == null)
+        {
+            Debug.LogError("No se encontró el componente HealthBar");
+        }
+        _healthBar.InitializeHealthBar(_currentHealth);
         // Get the Health component attached to this game object
-        health = GetComponent<Health>();
+        _health = GetComponent<Health>();
         // Set the initial health value
-        health.Initialize(100, 100);
+        _health.Initialize(100, 100);
         // Log the initial health value
-        Debug.Log($"Player health set to: {health.CurrentHealth}");
+        Debug.Log($"Player health set to: {_health.CurrentHealth}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthBar.ChangeCurrentHealth(_currentHealth);
-        healthBar.ChangeMaxHealth(_maxHealth);
+        _healthBar.ChangeCurrentHealth(_currentHealth);
+        _healthBar.ChangeMaxHealth(_maxHealth);
         TakingDamage();
         GetHealthValue();
         // Check if the player's health has reached zero
-        if (health.CurrentHealth <= 0)
+        if (_health.CurrentHealth <= 0)
         {
             // The player has died
             Debug.Log("Player died");
@@ -48,9 +53,9 @@ public class PlayerHealth : MonoBehaviour
     public void TakeHealth(int amount)
     {
         // Increase the player's health
-        health.IncreaseLife(amount);
+        _health.IncreaseLife(amount);
         // Check if the player's health has reached maximum
-        if (health.CurrentHealth == health.MaxHealth)
+        if (_health.CurrentHealth == _health.MaxHealth)
         {
             // The player has healed to maximum
             Debug.Log("Player has healed to max");
@@ -60,20 +65,23 @@ public class PlayerHealth : MonoBehaviour
     // Method to handle player damage
     private void TakingDamage()
     {
-        // Check if the player has been hit
-        if (health.GetHitStatus())
+        if (_health != null && _healthBar != null)
         {
-            // Push the player back
-            playerMovement.PushPlayer();
-            // Reset the hit status
-            health.ResetHit();
+            // Check if the player has been hit
+            if (_health.GetHitStatus())
+            {
+                // Push the player back
+                playerMovement.PushPlayer();
+                // Reset the hit status
+                _health.ResetHit();
+            }
         }
     }
 
     private void GetHealthValue()
     {
-        _currentHealth = health.CurrentHealth;
-        _maxHealth = health.MaxHealth;
+        _currentHealth = _health.CurrentHealth;
+        _maxHealth = _health.MaxHealth;
     }
     
     void RestartScene()
@@ -83,6 +91,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        _healthBar = null;
         RestartScene();
     }
 }
