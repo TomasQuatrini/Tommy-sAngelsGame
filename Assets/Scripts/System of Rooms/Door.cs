@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject destination; // Nivel destino
-    public bool isLocked = false; // Estado de la puerta
-    public bool useSpawnInit = true;
+    public GameObject destination; // level destine
+    public bool isLocked = false; // state of door
+    public bool useSpawnInit = true; // use spawninit or spawnend
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // Verificar si el jugador colisionó con la puerta
+        // Verify collide with player
         if (collider.gameObject.tag == "Player")
         {
-            // Verificar si la puerta está abierta
+            // Check if the door is open
             if (!isLocked)
             {
-                // Desactivar el nivel actual
+                // Deactivate the current level
                 GameObject currentLevel = transform.parent.gameObject;
                 currentLevel.SetActive(false);
 
-                // Activar el nivel destino
+                // Activate level destine
                 destination.SetActive(true);
 
-                // Mover el jugador al punto de spawn inicial del nivel destino
+                // Transport player to lvl destine
                 GameObject player = collider.gameObject;
                 Transform spawnPoint = useSpawnInit ? destination.transform.Find("SpawnInit") : destination.transform.Find("SpawnEnd");
                 if (spawnPoint != null)
@@ -31,7 +31,7 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("No se encontró el punto de spawn inicial en el nivel destino");
+                    Debug.LogError("Initial spawn point not found on destination level");
                 }
             }
         }
