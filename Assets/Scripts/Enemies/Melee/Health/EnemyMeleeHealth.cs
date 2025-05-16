@@ -9,8 +9,6 @@ public class EnemyMeleeHealth : MonoBehaviour
     [SerializeField] HealthBarEnemies healthBarEnemies;
     [SerializeField] float _currentHealth;
     [SerializeField] float _maxHealth;
-    // Reference to the KeySpawner
-    public KeySpawner keySpawner;
 
     private void Start()
     {
@@ -29,20 +27,14 @@ public class EnemyMeleeHealth : MonoBehaviour
     }
 
     void Update()
-    {
-        // Check if the enemy is dead
-        if (health.CurrentHealth <= 0)
-        {
-            Die();
-        }
+    {        
         CurrentHealth();
         SetHealthBar();
+        CheckDead();        
     }
 
     private void Die()
     {
-        // Notify the KeySpawner that an enemy has been killed
-        keySpawner.EnemyKilled();
         // Destroy the enemy GameObject
         Destroy(gameObject);
     }
@@ -68,5 +60,19 @@ public class EnemyMeleeHealth : MonoBehaviour
     private void SetHealthBar()
     {
         healthBarEnemies.UpdateHealthbar(_maxHealth, _currentHealth);
+    }
+
+    private void CheckDead()
+    {
+    // Check if the enemy is dead
+        if (health.CurrentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public bool IsAlive()
+    {
+        return health.CurrentHealth > 0;
     }
 }

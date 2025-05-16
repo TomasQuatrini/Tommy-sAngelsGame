@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyPickup : MonoBehaviour
+public class KeyManager : MonoBehaviour
 {
     // Reference to the key scriptable object
     public Key key;
@@ -21,5 +21,14 @@ public class KeyPickup : MonoBehaviour
             // Destroy the key GameObject
             Destroy(gameObject);
         }
+    }
+    public void Start()
+    {
+        gameObject.SetActive(false);
+    }
+    public void SpawnKey()
+    {
+        // Instantiate the key GameObject
+        gameObject.SetActive(true);
     }
 }

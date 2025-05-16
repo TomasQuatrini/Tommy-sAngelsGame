@@ -11,6 +11,7 @@ public class EnemyMeleeMovement : MonoBehaviour
 
     // Reference to the navigation agent
     private NavMeshAgent agent;
+    private EnemyMeleeHealth health;
 
     // Current patrol point index
     private int currentPatrolIndex = 0;
@@ -23,6 +24,7 @@ public class EnemyMeleeMovement : MonoBehaviour
 
     private void Start()
     {
+        health = GetComponent<EnemyMeleeHealth>();
         // Initialize patrol points
         InitPatrolPoints();
 
@@ -61,10 +63,13 @@ public class EnemyMeleeMovement : MonoBehaviour
 
     public void SetChasing(bool chasing)
     {
-        isChasing = chasing;
-        if (!chasing)
+        if (health.IsAlive())
         {
-            agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
+            isChasing = chasing;
+            if (!chasing)
+            {
+                agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
+            }
         }
     }
 

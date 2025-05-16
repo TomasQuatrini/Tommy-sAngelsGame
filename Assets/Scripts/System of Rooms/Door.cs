@@ -6,18 +6,21 @@ public class Door : MonoBehaviour
 {
     public GameObject destination; // level destine
     public bool isLocked = false; // state of door
-    public string spawnContainerName = "Spawn"; 
-    private Transform[] _spawnPoints;
+    public string keyId = "lvl1";
     public int selectedSpawnIndex;
+    public Inventory inventory;
+    private Transform[] _spawnPoints;
+    private string _spawnContainerName = "Spawn";
+
     private void InitializeSpawnPoints()
     {
         // Find GameObject child in 
-        Transform spawnContainer = destination.transform.Find(spawnContainerName);
+        Transform spawnContainer = destination.transform.Find(_spawnContainerName);
         if (spawnContainer == null)
         {
             foreach (Transform child in destination.transform)
             {
-                if (child.name.ToLower() == spawnContainerName.ToLower())
+                if (child.name.ToLower() == _spawnContainerName.ToLower())
                 {
                     spawnContainer = child;
                     break;
@@ -35,7 +38,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Contenedor de puntos de spawn no encontrado en el nivel destino");
+            Debug.LogError("spawn container no avaible");
         }
     }
     void OnTriggerEnter2D(Collider2D collider)
@@ -43,7 +46,7 @@ public class Door : MonoBehaviour
         // Verificar colisión con el jugador
         if (collider.gameObject.tag == "Player")
         {
-            // is Locked?
+            CheckKeyInventory();
             if (!isLocked)
             {
                 // Desactivar el nivel actual
@@ -58,10 +61,19 @@ public class Door : MonoBehaviour
                 GameObject player = collider.gameObject;
                 player.transform.position = _spawnPoints[selectedSpawnIndex].position;
             }
-            else
-            {
-                Debug.Log("You need a key");
-            }
+        }
+    }
+    void CheckKeyInventory()
+    {
+        Key key = inventory.items.Find(item => item is Key && ((Key)item).keyId == keyId) as Key;
+        if (key != null)
+        {
+            // Unlock the door
+            isLocked = false;
+        }
+        else
+        {
+            Debug.Log("You don't have the required key");
         }
     }
 }
