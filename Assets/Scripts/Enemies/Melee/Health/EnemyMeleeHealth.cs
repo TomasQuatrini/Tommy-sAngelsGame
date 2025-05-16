@@ -41,8 +41,6 @@ public class EnemyMeleeHealth : MonoBehaviour
 
     private void Die()
     {
-        // Enemy death logic
-        Debug.Log("Enemy killed");
         // Notify the KeySpawner that an enemy has been killed
         keySpawner.EnemyKilled();
         // Destroy the enemy GameObject

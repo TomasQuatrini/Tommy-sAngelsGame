@@ -6,33 +6,61 @@ public class Door : MonoBehaviour
 {
     public GameObject destination; // level destine
     public bool isLocked = false; // state of door
-    public bool useSpawnInit = true; // use spawninit or spawnend
+    public string spawnContainerName = "Spawn"; 
+    private Transform[] _spawnPoints;
+    public int selectedSpawnIndex;
+    private void InitializeSpawnPoints()
+    {
+        // Find GameObject child in 
+        Transform spawnContainer = destination.transform.Find(spawnContainerName);
+        if (spawnContainer == null)
+        {
+            foreach (Transform child in destination.transform)
+            {
+                if (child.name.ToLower() == spawnContainerName.ToLower())
+                {
+                    spawnContainer = child;
+                    break;
+                }
+            }
+        }
+
+        if (spawnContainer != null)
+        {
+            _spawnPoints = new Transform[spawnContainer.childCount];
+            for (int i = 0; i < spawnContainer.childCount; i++)
+            {
+                _spawnPoints[i] = spawnContainer.GetChild(i);
+            }
+        }
+        else
+        {
+            Debug.LogError("Contenedor de puntos de spawn no encontrado en el nivel destino");
+        }
+    }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // Verify collide with player
+        // Verificar colisión con el jugador
         if (collider.gameObject.tag == "Player")
         {
-            // Check if the door is open
+            // is Locked?
             if (!isLocked)
             {
-                // Deactivate the current level
+                // Desactivar el nivel actual
                 GameObject currentLevel = transform.parent.gameObject;
                 currentLevel.SetActive(false);
 
                 // Activate level destine
                 destination.SetActive(true);
+                InitializeSpawnPoints();
 
-                // Transport player to lvl destine
+                // Transport player
                 GameObject player = collider.gameObject;
-                Transform spawnPoint = useSpawnInit ? destination.transform.Find("SpawnInit") : destination.transform.Find("SpawnEnd");
-                if (spawnPoint != null)
-                {
-                    player.transform.position = spawnPoint.position;
-                }
-                else
-                {
-                    Debug.LogError("Initial spawn point not found on destination level");
-                }
+                player.transform.position = _spawnPoints[selectedSpawnIndex].position;
+            }
+            else
+            {
+                Debug.Log("You need a key");
             }
         }
     }
