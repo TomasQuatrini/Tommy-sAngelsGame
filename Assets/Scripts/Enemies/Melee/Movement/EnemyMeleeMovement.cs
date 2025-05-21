@@ -189,4 +189,12 @@ public class EnemyMeleeMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
     }
+    private void OnEnable()
+    {
+        if (!isChasing && patrolPoints != null && patrolPoints.Length > 0 && agent != null)
+        {
+            agent.SetDestination(new Vector3(patrolPoints[currentPatrolIndex].x, patrolPoints[currentPatrolIndex].y, transform.position.z));
+        }
+    }
+
 }
