@@ -43,13 +43,13 @@ public class Door : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // Verificar colisión con el jugador
+        // Check collision with the player
         if (collider.gameObject.tag == "Player")
         {
             CheckKeyInventory();
             if (!isLocked)
             {
-                // Desactivar el nivel actual
+                // Deactivate the current level
                 GameObject currentLevel = transform.parent.gameObject;
                 currentLevel.SetActive(false);
 

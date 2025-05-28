@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 74820030561433138}
-  - component: {fileID: 4601152677041887944}
+  - component: {fileID: 773782677719176706}
   - component: {fileID: 1670363938189436119}
   m_Layer: 0
   m_Name: Vision
@@ -178,8 +178,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4990583152560286566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4601152677041887944
-PolygonCollider2D:
+--- !u!61 &773782677719176706
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -210,7 +210,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -2.29, y: 0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -220,12 +220,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -4.19, y: 1.78}
-      - {x: 0.07, y: -0.12}
-      - {x: -4.18, y: -2.11}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 4.38, y: 2.66}
+  m_EdgeRadius: 0
 --- !u!114 &1670363938189436119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +375,6 @@ MonoBehaviour:
   healthBarEnemies: {fileID: 8440285337630797385}
   _currentHealth: 0
   _maxHealth: 0
-  keySpawner: {fileID: 0}
 --- !u!50 &2321977739870981298
 Rigidbody2D:
   serializedVersion: 4
@@ -387,14 +383,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2795952981065650971}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -405,7 +401,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1518575371259609645
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -696,9 +692,9 @@ Transform:
   m_GameObject: {fileID: 6338018247200698744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.55, y: 7.4, z: 0}
-  m_LocalScale: {x: 2.98, y: 3.3863637, z: 3.3863637}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 7.66, y: -0.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9106950674133682739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -855,9 +851,9 @@ Transform:
   m_GameObject: {fileID: 8630985678511592150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.61, y: 7.67, z: 0}
-  m_LocalScale: {x: 2.98, y: 3.3863637, z: 3.3863637}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -9.42, y: -1.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9106950674133682739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

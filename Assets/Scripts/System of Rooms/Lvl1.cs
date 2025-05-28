@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lvl1 : MonoBehaviour
 {
+    Room level1 = new Room("Level 1");
     bool HaveEnemies
     {
         get

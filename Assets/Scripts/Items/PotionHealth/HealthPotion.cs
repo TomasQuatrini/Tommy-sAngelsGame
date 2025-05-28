@@ -5,8 +5,6 @@ using UnityEngine;
 // HealthPotion.cs
 // A specific item that restores health
 
-using UnityEngine;
-
 [CreateAssetMenu(fileName = "New HealthPotion", menuName = "Items/HealthPotion")]
 public class HealthPotion : Item
 {

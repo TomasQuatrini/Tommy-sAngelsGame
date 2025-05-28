@@ -28,19 +28,19 @@ public class PlayerAttack : MonoBehaviour
         EnemyMeleeHealth enemyHealth = target.GetComponent<EnemyMeleeHealth>();
         if (enemyHealth == null)
         {
-            Debug.LogError("El objetivo no tiene un componente EnemyMeleeHealth");
+            Debug.LogError("Target does not have an EnemyMeleeHealth component");
             return;
         }
 
         if (enemyHealth.GetHealth() == null)
         {
-            Debug.LogError("El objetivo no tiene un componente de salud");
+            Debug.LogError("Target does not have a health component");
             return;
         }
 
         if (meleeAttack == null)
         {
-            Debug.LogError("MeleeAttack no está asignado");
+            Debug.LogError("MeleeAttack is not assigned");
             return ;
         }
 

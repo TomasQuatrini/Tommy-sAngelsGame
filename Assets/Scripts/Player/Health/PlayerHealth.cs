@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         _healthBar = GameObject.FindObjectOfType<HealthBar>();
         if (_healthBar == null)
         {
-            Debug.LogError("No se encontró el componente HealthBar");
+            Debug.LogError("HealthBar component not found");
         }
         _healthBar.InitializeHealthBar(_currentHealth);
         // Get the Health component attached to this game object

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyMeleeAttack : MonoBehaviour
 {
-    // Referencia al hitbox
+    // Reference hitbox
     public Hitbox hitbox;
 
-    // Cooldown entre ataques
+    // Cooldown between attacks
     public float cooldown = 2f;
 
-    // Indica si el enemigo puede atacar
+    // Indicates if the enemy can attack
     public bool canAttack = true;
 
     public void Attack(GameObject target)
@@ -23,15 +23,15 @@ public class EnemyMeleeAttack : MonoBehaviour
         }
         else
         {
-            Debug.LogError("El objetivo no tiene una vida");
+            Debug.LogError("Target does not have a health component");
         }
     }
 
     public void ResetAttack()
     {
-        // Activa la capacidad de atacar después del cooldown
+        // Enables attack capability after cooldown
         canAttack = true;
-        // Desactiva el collider del hitbox
+        // Deactivate collider hitbox
         hitbox.GetComponent<Collider2D>().enabled = false;
     }
 }

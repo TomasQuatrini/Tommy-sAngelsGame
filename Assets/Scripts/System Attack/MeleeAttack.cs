@@ -13,7 +13,7 @@ public class MeleeAttack : AttackState
         }
         else
         {
-            Debug.LogError("El objetivo no tiene un componente de salud");
+            Debug.LogError("Target does not have a health component");
         }
     }
 }
