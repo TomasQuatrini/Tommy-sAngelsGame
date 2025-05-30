@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Lvl1 : MonoBehaviour
 {
+    [SerializeField] Inventory inventory;
+    [SerializeField] GameObject key;
+    [SerializeField] public bool hasTimer = false;
+
     Room level1 = new Room("Level 1");
+
+
     bool HaveEnemies
     {
         get
@@ -21,22 +27,33 @@ public class Lvl1 : MonoBehaviour
     }
 
     void Update()
-    {
-        if (HaveEnemies)
+    {     
+        if (!HaveEnemies)
         {
-            return;
+            if(key == null) return;
+
+            key.GetComponent<KeyManager>().SpawnKey();    
+
+            level1.InitTimer(30);                      
+        }
+        if (level1.IsTimerRunning)
+        {
+            level1.Tick(Time.deltaTime);
+        }
+        if (hasTimer is true)
+        {
+            level1.hasTimer = true;
+        }
+    }
+    public void InitT()
+    {
+        if (level1.hasTimer is true)
+        {
+            level1.InitTimer(30);
         }
         else
         {
-            Transform key = transform.Find("Key");
-            if (key != null)
-            {
-                key.gameObject.SetActive(true);
-            }
-            else
-            {
-                return;
-            }
+            Debug.Log("The Room have not timer");
         }
     }
 }

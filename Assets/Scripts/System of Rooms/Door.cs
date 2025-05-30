@@ -46,7 +46,6 @@ public class Door : MonoBehaviour
         // Check collision with the player
         if (collider.gameObject.tag == "Player")
         {
-            CheckKeyInventory();
             if (!isLocked)
             {
                 // Deactivate the current level
@@ -63,17 +62,9 @@ public class Door : MonoBehaviour
             }
         }
     }
-    void CheckKeyInventory()
+
+    public void Unlocked()
     {
-        Key key = inventory.items.Find(item => item is Key && ((Key)item).keyId == keyId) as Key;
-        if (key != null)
-        {
-            // Unlock the door
-            isLocked = false;
-        }
-        else
-        {
-            Debug.Log("You don't have the required key");
-        }
+        isLocked = false;
     }
 }
