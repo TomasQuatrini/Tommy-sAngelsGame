@@ -11,7 +11,7 @@ public class Health : MonoBehaviour, IHealth
     // Current life of the character
     [SerializeField] private int _currentHealth = 100;
 
-    [SerializeField] private bool hit = false;
+    [SerializeField] private bool _hit = false;
 
     // Properties that allow access to life data
     public int MaxHealth { get { return _maxHealth; } }
@@ -31,7 +31,7 @@ public class Health : MonoBehaviour, IHealth
         {
             _currentHealth = 0;
         }
-        hit = true;
+        _hit = true;
     }
 
     // Method that increases the character's life
@@ -52,12 +52,12 @@ public class Health : MonoBehaviour, IHealth
 
     public bool GetHitStatus()
     {
-        return hit;
+        return _hit;
     }
 
     public void ResetHit()
     {
-        hit = false;
+        _hit = false;
     }
 
     public void Initialize(int maxHealth, int currentHealth)

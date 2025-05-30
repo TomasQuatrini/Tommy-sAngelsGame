@@ -7,8 +7,8 @@ public class EnemyMeleeHealth : MonoBehaviour
     // Reference to the enemy's health
     [SerializeField] Health health;
     [SerializeField] HealthBarEnemies healthBarEnemies;
-    [SerializeField] float _currentHealth;
-    [SerializeField] float _maxHealth;
+    [SerializeField] private float _currentHealth;
+    [SerializeField] private float _maxHealth;
 
     private void Start()
     {

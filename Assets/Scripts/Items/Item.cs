@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Item.cs
-// Base class for all items in the game
-// Provides a basic structure for items with a name, description, and use method
-
-using UnityEngine;
 
 public abstract class Item : ScriptableObject
 {

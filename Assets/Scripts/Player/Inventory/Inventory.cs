@@ -23,9 +23,8 @@ public class Inventory : MonoBehaviour
             items.Add(item);
             return true;
         }
-        else
+        else 
         {
-            Debug.Log("Inventory is full");
             return false;
         }
     }

@@ -10,14 +10,14 @@ public class Vision : MonoBehaviour
     // Reference to the movement script
     public EnemyMeleeMovement movementScript;
 
-    private bool playerInSight = false;
+    private bool _playerInSight = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the player is within the vision
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerInSight = true;
+            _playerInSight = true;
             movementScript.SetChasing(true);
             StartCoroutine(AttackRoutine());
         }
@@ -28,7 +28,7 @@ public class Vision : MonoBehaviour
         // Check if the player has exited the vision
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerInSight = false;
+            _playerInSight = false;
             movementScript.SetChasing(false);
             StopAllCoroutines();
             attackScript.hitbox.GetComponent<Collider2D>().enabled = false;
@@ -39,7 +39,7 @@ public class Vision : MonoBehaviour
 
     private IEnumerator AttackRoutine()
     {
-        while (playerInSight)
+        while (_playerInSight)
         {
             if (attackScript.canAttack)
             {

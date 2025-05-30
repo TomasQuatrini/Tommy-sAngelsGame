@@ -9,8 +9,8 @@ public class PlayerHealth : MonoBehaviour
     // Reference to the Health component
     private Health _health;
     public BoxCollider2D boxCollider2D;
-    [SerializeField] float _currentHealth;
-    [SerializeField] float _maxHealth;
+    [SerializeField] private float _currentHealth;
+    [SerializeField] private float _maxHealth;
     private HealthBar _healthBar;
 
     // Reference to the player movement script
