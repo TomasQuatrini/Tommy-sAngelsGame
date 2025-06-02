@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 94d7d1a53b3a52f4a827008d6bad2ee2
+guid: 7c014ec1c0062e94fa35c9908eaa6626
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,12 +97,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkL_0
+      name: WalkDown_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,19 +111,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2cc7e229098db540aeb28b71f3ea853
-      internalID: -166743023
+      spriteID: c9b749435066fad41a68197cec014727
+      internalID: 1263589290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_1
+      name: WalkDown_1
       rect:
         serializedVersion: 2
-        x: 132
+        x: 120
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -132,19 +132,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55d342a5372dd4e458bda0d62a22cdcc
-      internalID: 1343809681
+      spriteID: 2ee782df14e02a347ba6caa8889be759
+      internalID: 695859360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_2
+      name: WalkDown_2
       rect:
         serializedVersion: 2
-        x: 264
+        x: 240
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -153,19 +153,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef0ac2268937ac247807850083de1f62
-      internalID: -1282682667
+      spriteID: 1469efd1a45af4548b8b40c51313e26e
+      internalID: -1589742282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_3
+      name: WalkDown_3
       rect:
         serializedVersion: 2
-        x: 396
+        x: 360
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -174,19 +174,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be87708b262eaef48af2e572f9554ae8
-      internalID: 946439314
+      spriteID: 14e0d261fddb1b3469887a1d8611408d
+      internalID: -350234844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_4
+      name: WalkDown_4
       rect:
         serializedVersion: 2
-        x: 528
+        x: 480
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -195,19 +195,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a822910791e2d547b45f1a2288266a5
-      internalID: 877016395
+      spriteID: 49ee2980706ebc749af7fe2a11e61806
+      internalID: 1536013607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_5
+      name: WalkDown_5
       rect:
         serializedVersion: 2
-        x: 660
+        x: 600
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -216,19 +216,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 310cf81159dc7b744823bcb069a18350
-      internalID: 609152880
+      spriteID: 6f0dce8a669ce7f4ba401eb8bd39e982
+      internalID: -1922674900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_6
+      name: WalkDown_6
       rect:
         serializedVersion: 2
-        x: 792
+        x: 720
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -237,19 +237,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4349145006b19546babae12adbb14c9
-      internalID: -562262805
+      spriteID: d9792f784d34d834eb2ab92b19d6dc71
+      internalID: -1828923494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_7
+      name: WalkDown_7
       rect:
         serializedVersion: 2
-        x: 924
+        x: 840
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -258,19 +258,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce083c3a88c2cfb41942cfaa5772dcc7
-      internalID: 1318563332
+      spriteID: d20ab7d531037644bbd873cd1f97371b
+      internalID: 498836964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_8
+      name: WalkDown_8
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 960
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -279,19 +279,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cd1a00717e0b484e95ecf5ac5cd31ad
-      internalID: -577316848
+      spriteID: b9a439e19e2c54745bdc2b971a78d793
+      internalID: 472855854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_9
+      name: WalkDown_9
       rect:
         serializedVersion: 2
-        x: 1188
+        x: 1080
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -300,19 +300,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f20d87480d3622845abb4b52c4f9b53d
-      internalID: -2014799290
+      spriteID: 7f4d5aa78bb238e4e9b88bb23757e805
+      internalID: -2076467578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkL_10
+      name: WalkDown_10
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 120
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3090df6807270b4e91866ffd134e7db
+      internalID: -1237975184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_11
       rect:
         serializedVersion: 2
         x: 1320
         y: 0
-        width: 132
+        width: 120
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -321,29 +342,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6da460a025ef1244a84eaba4d5021f0
-      internalID: -1207861207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkL_11
-      rect:
-        serializedVersion: 2
-        x: 1452
-        y: 0
-        width: 132
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae815776974899f4f81d7ad03bfca27b
-      internalID: -1319351773
+      spriteID: 63b7751ba5935074f9245e27ca182bb1
+      internalID: 23837347
       vertices: []
       indices: 
       edges: []
@@ -359,18 +359,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WalkL_0: -166743023
-      WalkL_1: 1343809681
-      WalkL_10: -1207861207
-      WalkL_11: -1319351773
-      WalkL_2: -1282682667
-      WalkL_3: 946439314
-      WalkL_4: 877016395
-      WalkL_5: 609152880
-      WalkL_6: -562262805
-      WalkL_7: 1318563332
-      WalkL_8: -577316848
-      WalkL_9: -2014799290
+      WalkDown_0: 1263589290
+      WalkDown_1: 695859360
+      WalkDown_10: -1237975184
+      WalkDown_11: 23837347
+      WalkDown_2: -1589742282
+      WalkDown_3: -350234844
+      WalkDown_4: 1536013607
+      WalkDown_5: -1922674900
+      WalkDown_6: -1828923494
+      WalkDown_7: 498836964
+      WalkDown_8: 472855854
+      WalkDown_9: -2076467578
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

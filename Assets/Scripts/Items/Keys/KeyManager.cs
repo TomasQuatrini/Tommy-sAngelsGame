@@ -10,7 +10,6 @@ public class KeyManager : MonoBehaviour
     // Reference to the player's inventory
     public Inventory inventory;
     public Door door;
-
     // Called when the player collides with the key
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,7 +20,7 @@ public class KeyManager : MonoBehaviour
             inventory.AddItem(key);
             // Destroy the key GameObject
             Destroy(gameObject);
-            door.Unlocked();
+            door.Unlocked();            
         }
     }
     public void Start()

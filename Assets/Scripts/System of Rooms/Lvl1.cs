@@ -4,56 +4,58 @@ using UnityEngine;
 
 public class Lvl1 : MonoBehaviour
 {
-    [SerializeField] Inventory inventory;
-    [SerializeField] GameObject key;
-    [SerializeField] public bool hasTimer = false;
+    [SerializeField] private GameObject key;
+    [SerializeField] private Room level1;
+    private bool _initTiming = false;
+    private bool _keyWasSpawned = false;
 
-    Room level1 = new Room("Level 1");
+    void Start()
+    {
+        level1 = new Room("Level 1");
+    }
 
+    void Update()
+    {
+        // Si ya no hay enemigos, spawnea la llave (una sola vez)
+        if (!_keyWasSpawned && !HaveEnemies)
+        {
+            if (key != null)
+            {
+                key.GetComponent<KeyManager>().SpawnKey();
+                _keyWasSpawned = true;
+            }
+        }
 
-    bool HaveEnemies
+        // Si la llave fue destruida, iniciar temporizador
+        if (_keyWasSpawned && key == null && !_initTiming)
+        {
+            InitT();
+        }
+
+        // Tick del temporizador
+        if (_initTiming)
+        {
+            level1.Tick(Time.deltaTime);
+        }
+    }
+
+    private bool HaveEnemies
     {
         get
         {
             foreach (Transform child in transform)
             {
                 if (child.name.StartsWith("EnemyMelee"))
-                {
                     return true;
-                }
             }
             return false;
         }
     }
 
-    void Update()
-    {     
-        if (!HaveEnemies)
-        {
-            if(key == null) return;
-
-            key.GetComponent<KeyManager>().SpawnKey();    
-
-            level1.InitTimer(30);                      
-        }
-        if (level1.IsTimerRunning)
-        {
-            level1.Tick(Time.deltaTime);
-        }
-        if (hasTimer is true)
-        {
-            level1.hasTimer = true;
-        }
-    }
-    public void InitT()
+    private void InitT()
     {
-        if (level1.hasTimer is true)
-        {
-            level1.InitTimer(30);
-        }
-        else
-        {
-            Debug.Log("The Room have not timer");
-        }
+        Debug.Log("InitT() was called");
+        _initTiming = true;
+        level1.InitTimer(30);
     }
 }
