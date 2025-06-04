@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
     private void HandleInput()
     {
         // Check if the K key is pressed.
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             meleeHitbox.GetComponent<Collider2D>().enabled = true;
             meleeHitbox.GetComponent<SpriteRenderer>().enabled = true;

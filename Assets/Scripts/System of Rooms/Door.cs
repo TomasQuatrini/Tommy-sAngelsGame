@@ -60,6 +60,10 @@ public class Door : MonoBehaviour
                 GameObject player = collider.gameObject;
                 player.transform.position = _spawnPoints[selectedSpawnIndex].position;
             }
+            else
+            {
+                Debug.Log("You haven't key");
+            }
         }
     }
 
