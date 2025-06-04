@@ -100,12 +100,12 @@ TextureImporter:
       name: UI definitiva_Health
       rect:
         serializedVersion: 2
-        x: 203
-        y: 31
-        width: 18
-        height: 17
+        x: 232
+        y: 82
+        width: 16
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,7 +189,7 @@ TextureImporter:
         width: 21
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: 8cf05f129a27ab44ab0a979b310e8afe
       internalID: 1350452952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI definitiva_logoheart
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 52
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b07b08d3df7f64790ce1897fb9e188
+      internalID: -1651300881
       vertices: []
       indices: 
       edges: []
@@ -220,6 +241,7 @@ TextureImporter:
       UI definitiva_2: 425081997
       UI definitiva_3: 1539536690
       UI definitiva_Health: -1358530461
+      UI definitiva_logoheart: -1651300881
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
