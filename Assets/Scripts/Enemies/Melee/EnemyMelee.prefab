@@ -210,7 +210,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.29, y: 0.04}
+  m_Offset: {x: -2.29, y: 0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -221,7 +221,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.38, y: 2.66}
+  m_Size: {x: 3.46, y: 1.25}
   m_EdgeRadius: 0
 --- !u!114 &1670363938189436119
 MonoBehaviour:
@@ -252,8 +252,10 @@ GameObject:
   - component: {fileID: 8501445290794402046}
   - component: {fileID: 2321977739870981298}
   - component: {fileID: 1518575371259609645}
+  - component: {fileID: 4364424079941157260}
   - component: {fileID: 5392610331911199026}
   - component: {fileID: 15623914472373407}
+  - component: {fileID: 458025903138904512}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Enemies
@@ -383,11 +385,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2795952981065650971}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -437,6 +439,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.38, y: 2.4}
   m_Direction: 0
+--- !u!114 &4364424079941157260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795952981065650971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d91c64e3cdfea4cb2f05e7de710f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5392610331911199026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,9 +463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd44132fe25bb8429c929a45d8729a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 100
-  hit: 0
+  _maxHealth: 40
+  _currentHealth: 40
+  _hit: 0
 --- !u!195 &15623914472373407
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -474,6 +488,27 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &458025903138904512
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795952981065650971}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bd76b20bff293f4eb293e48872f5305, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3946538532839187322
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 6338018247200698744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.66, y: -0.92, z: 0}
+  m_LocalPosition: {x: 4.49, y: 1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -851,7 +886,7 @@ Transform:
   m_GameObject: {fileID: 8630985678511592150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.42, y: -1.08, z: 0}
+  m_LocalPosition: {x: -3.62, y: -0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
