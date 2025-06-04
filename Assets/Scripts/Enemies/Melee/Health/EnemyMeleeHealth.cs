@@ -18,7 +18,7 @@ public class EnemyMeleeHealth : MonoBehaviour
         if (health != null)
         {
             // Initialize the enemy's health
-            health.Initialize(100, 100); // Pass the corresponding parameters
+            health.Initialize(40, 40); // Pass the corresponding parameters
         }
         else
         {
