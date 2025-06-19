@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
     private HealthBar _healthBar;
+    private PlayerRespawn _playerRespawn;
 
     // Reference to the player movement script
     public PlayerMovement playerMovement;
@@ -19,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // Initialize health component and set initial health value
     private void Start()
     {
+        _playerRespawn = GetComponent<PlayerRespawn>();
         _healthBar = GameObject.FindObjectOfType<HealthBar>();
         if (_healthBar == null)
         {
@@ -91,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        _healthBar = null;
-        RestartScene();
+        _playerRespawn.Respawn();
+        _health.Initialize(100, 100);
     }
 }

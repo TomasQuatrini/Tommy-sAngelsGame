@@ -5,53 +5,31 @@ using UnityEngine.AI;
 
 public class ShootArmOffSet : MonoBehaviour
 {
-    private Transform _transform;
+    public float armDistance = 0.6f;
     private SpriteRenderer _sprite;
-    private EnemyRangeMovement _enemyRangeMovement;
-    private Vector2 _agent;
-    private float _offsetH = 0.5f;
-    private float _offsetV = 0.59f;
+    private EnemyRangeMovement _movement;
+    private Vector3 _originalScale;
     
     void Start()
     {
-        _enemyRangeMovement = GetComponentInParent<EnemyRangeMovement>();
-        _transform = GetComponent<Transform>();
+        _movement = GetComponentInParent<EnemyRangeMovement>();
         _sprite = GetComponent<SpriteRenderer>();
+        _originalScale = transform.localScale;
     
     }
     void Update()
     {
-        _agent = _enemyRangeMovement.Lastdirection;
-        UpdateHitboxPosition();
+        Vector2 dir = _movement.lastSightDir;
+        if (dir.sqrMagnitude < 0.01f) return;
+
+        float angle = Mathf.Atan2(dir.x, dir.x) * Mathf.Rad2Deg;
+
+        transform.localPosition = new Vector3(dir.x * armDistance, dir.y * armDistance, transform.localPosition.z);
+
+        float scaleX = dir.x < 0 ? -_originalScale.x : _originalScale.x;
+        transform.localScale = new Vector3(scaleX, _originalScale.y, _originalScale.z);
+
+        _sprite.sortingOrder = dir.y > 0 ? -1 : 1;
     }
-    public void UpdateHitboxPosition()
-    {
-        if (_agent.x > Mathf.Abs(_agent.y))
-        {
-            _sprite.sortingOrder = 1;
-            _transform.localPosition = new Vector3(_offsetH, -0.59f, 0);
-            _transform.localScale = new Vector3(1, 1, 1);
-            _transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (_agent.x < -Mathf.Abs(_agent.y))
-        {
-            _sprite.sortingOrder = 1;
-            _transform.localPosition = new Vector3(-_offsetH, -0.59f, 0);
-            _transform.localScale = new Vector3(-1, 1, 1);
-            _transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (_agent.y > Mathf.Abs(_agent.x))
-        {
-            _sprite.sortingOrder = -1;
-            _transform.localPosition = new Vector3(0, _offsetV, 0);
-            _transform.localScale = new Vector3(1, 1, 1);
-            _transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else
-        {
-            _sprite.sortingOrder = 1;
-            _transform.localPosition = new Vector3(_offsetH, -_offsetV, 0);
-            _transform.rotation = Quaternion.Euler(0, 0, -90);
-        }
-    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Item
   - Walls
+  - Destructible
   layers:
   - Default
   - TransparentFX

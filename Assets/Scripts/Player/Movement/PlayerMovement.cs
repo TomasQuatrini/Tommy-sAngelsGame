@@ -10,14 +10,15 @@ public class PlayerMovement : MonoBehaviour
 
     // Rigidbody2D reference.
     private Rigidbody2D _rb2D;
-    private Animator _animator;
 
     // Movement input.
     private Vector2 _movementInput;
 
     // Flag to check if player is being pushed.
     public bool isBeingPushed = false;
-    public Vector2 MovementDirection => _movementInput.normalized;  
+    public Vector2 MovementDirection => _lastInput;  
+
+    private Vector2 _lastInput;
 
     // Duration of push.
     public float pushDuration = 0.4f;
@@ -27,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get Rigidbody2D component.
         _rb2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
 
         // Check if Rigidbody2D component is missing.
         if (_rb2D == null)
@@ -41,6 +41,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get movement input.
         HandleInput();
+        if (_movementInput.sqrMagnitude > 0.01f)
+        {
+            _lastInput = _movementInput.normalized;
+        }
     }
 
     // Move player.
@@ -48,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Update player position.
         MovePlayer();
-        SetAnimator();
     }
 
     // Get movement input from player.
@@ -89,19 +92,5 @@ public class PlayerMovement : MonoBehaviour
     {
         // Set flag to false.
         isBeingPushed = false;
-    }
-
-    private void SetAnimator()
-    {
-        _animator.SetFloat("VelocityX", _rb2D.velocity.x);
-        _animator.SetFloat("VelocityY", _rb2D.velocity.y);
-        if (_rb2D.velocity.magnitude == 0)
-        {
-            _animator.SetBool("IsIddle?", true);
-        }
-        else
-        {
-            _animator.SetBool("IsIddle?", false);
-        }
     }
 }

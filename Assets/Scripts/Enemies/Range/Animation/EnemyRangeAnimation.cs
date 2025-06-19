@@ -9,7 +9,6 @@ public class EnemyRangeAnimation : MonoBehaviour
     private Animator _animator;
     private NavMeshAgent _agent;
     private EnemyRangeMovement _movement;
-    private Vector2 _lastDirection;
 
     void Start()
     {
@@ -21,38 +20,41 @@ public class EnemyRangeAnimation : MonoBehaviour
     void Update()
     {
         Vector2 velocity = _agent.velocity; 
+        Vector2 lookDir;
         if (velocity.magnitude > 0.05f)
         {
-            _lastDirection = velocity;
-            // Elegimos animación según dirección
-            if (Mathf.Abs(velocity.x) > Mathf.Abs(velocity.y))
+            if (velocity.magnitude > 0.05f && !_movement.Stopped)
             {
-                _animator.Play("WalkR-LYag");
-            }
-            else if (velocity.y > 0)
-            {
-                _animator.Play("WalkBackYag");
+                // Caminando
+                lookDir = velocity.normalized;
+                PlayWalkAnimation(lookDir);
             }
             else
             {
-                _animator.Play("WalkFrontYag");
+                // Quieto: usar última dirección de visión para orientar el idle/ataque
+                lookDir = _movement.lastSightDir;
+                PlayIdleAnimation(lookDir);
             }
         }
+    }
+
+    void PlayWalkAnimation(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            _animator.Play("WalkR-LYag");
+        else if (dir.y > 0)
+            _animator.Play("WalkBackYag");
         else
-        {
-            _lastDirection = _movement.Lastdirection;
-            if (Mathf.Abs(_lastDirection.x) > Mathf.Abs(_lastDirection.y))
-            {
-                _animator.Play("IddleR-LYag");
-            }
-            else if (_lastDirection.y > 0)
-            {
-                _animator.Play("IddleTopYag");
-            }
-            else
-            {
-                _animator.Play("IddleDownYag");
-            }
-        }
+            _animator.Play("WalkFrontYag");
+    }
+
+    void PlayIdleAnimation(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            _animator.Play("IddleR-LYag");
+        else if (dir.y > 0)
+            _animator.Play("IddleTopYag");
+        else
+            _animator.Play("IddleDownYag");
     }
 }

@@ -10,7 +10,8 @@ public class PlayerAttack : MonoBehaviour
     // The melee attack script.
     public MeleeAttack meleeAttack;
     // The ranged attack script.
-    public RangedAttack rangedAttack;
+    public bool ShootLocked { get; set; } = true;
+    [SerializeField] private GameObject _shootArm;
 
     [SerializeField] int damageMelee = 10;
     
@@ -20,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
         meleeAttack = new MeleeAttack();
         meleeHitbox.GetComponent<Collider2D>().enabled = false;
         meleeHitbox.GetComponent<SpriteRenderer>().enabled = false;
+        _shootArm.SetActive(false);
     }
 
     // Perform an attack on a target.
@@ -55,8 +57,19 @@ public class PlayerAttack : MonoBehaviour
             // Deactivate the melee hitbox after a short period of time.
             Invoke(nameof(DisableHitbox), 0.2f); // 0.2 seconds
         }
+        if (Input.GetKeyDown(KeyCode.Mouse1) && ShootLocked is false)
+        {
+            _shootArm.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && ShootLocked is true)
+        {
+            Debug.Log("Necesitas Desbloquear el arma");
+        }        
+        if (Input.GetKeyUp(KeyCode.Mouse1)&& ShootLocked is false)
+        {
+            _shootArm.SetActive(false);
+        }
     }
-
     // Disable the hitbox collider.
     private void DisableHitbox()
     {

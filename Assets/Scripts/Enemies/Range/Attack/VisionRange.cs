@@ -18,6 +18,13 @@ public class VisionRange : MonoBehaviour
     {
         movement = GetComponentInParent<EnemyRangeMovement>();
         attack   = GetComponentInParent<EnemyRangeAttack>();
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -30,8 +37,8 @@ public class VisionRange : MonoBehaviour
         Vector2 origin    = transform.position;
         Vector2 targetPos = other.transform.position;
         Vector2 dir       = (targetPos - origin).normalized;
-        movement._lastdirection = dir;
         float   dist      = Vector2.Distance(origin, targetPos);
+        movement.lastSightDir = dir;
 
         // Raycast to detect obstacles
         RaycastHit2D hit = Physics2D.Raycast(origin, dir, dist, obstacleMask);

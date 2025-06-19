@@ -21,6 +21,12 @@ public class Shoot : MonoBehaviour
 
         // Instantiate and launch projectile
         GameObject proj = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+
+        Projectile projScript = proj.GetComponent<Projectile>();
+        if (projScript != null)
+        {
+            projScript.currentFlag = Projectile.FlagAttack.Enemies;
+        }
         Rigidbody2D rb   = proj.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = dir * projectileSpeed;

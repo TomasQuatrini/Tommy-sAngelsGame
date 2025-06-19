@@ -13,9 +13,10 @@ public class EnemyRangeMovement : MonoBehaviour
     private NavMeshAgent agent;
     private Transform currentTarget;
     private bool canSeePlayer = false;
-    public Vector2 _lastdirection { get; set; }
+    [HideInInspector] public Vector2 lastMoveDir { get; private set; }
+    [HideInInspector] public Vector2 lastSightDir { get; set; }
 
-    public Vector2 Lastdirection { get { return _lastdirection;}}
+    public bool Stopped { get; private set; } = false;
 
 
     void Start()
@@ -31,15 +32,17 @@ public class EnemyRangeMovement : MonoBehaviour
     {
         if (agent.velocity.magnitude > 0.05f)
         {
-            _lastdirection = agent.velocity;
+            lastMoveDir = agent.velocity.normalized;
         }
         if (canSeePlayer)
         {
             agent.isStopped = true;
+            Stopped = true;
         }
         else
         {
             agent.isStopped = false;
+            Stopped = false;
             FlipPatrol();
         }
 
@@ -88,7 +91,7 @@ public class EnemyRangeMovement : MonoBehaviour
 
     private void FlipSprite()
     {
-        Vector2 dir = agent.velocity.magnitude > 0.05f ? agent.velocity : _lastdirection;
+        Vector2 dir = (agent.velocity.magnitude > 0.05f) ? agent.velocity.normalized : lastMoveDir;
         if (dir.x > 0.1f)
         {
             GetComponent<SpriteRenderer>().flipX = false;
