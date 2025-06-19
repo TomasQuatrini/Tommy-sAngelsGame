@@ -6,38 +6,44 @@ using UnityEngine;
 public class Health : MonoBehaviour, IHealth
 {
     // Maximum life of the character
-    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private float _maxHealth;
 
     // Current life of the character
-    [SerializeField] private int _currentHealth = 100;
+    [SerializeField] private float _currentHealth;
 
     [SerializeField] private bool _hit = false;
+    private float _HfillAmount;
 
     // Properties that allow access to life data
-    public int MaxHealth { get { return _maxHealth; } }
-    public int CurrentHealth { get { return _currentHealth; } }
+    public float MaxHealth { get { return _maxHealth; } }
+    public float CurrentHealth { get { return _currentHealth; } }
 
     private void Start()
     {
         Initializing();
     }
 
-    // Method that reduces the character's life
-    public void ReduceLife(int amount)
+    private void Update()
     {
-        _currentHealth -= amount;
+        _HfillAmount = _currentHealth / _maxHealth;
+    }
+
+    // Method that reduces the character's life
+    public void ReduceLife(float amount)
+    {
+        _currentHealth = _currentHealth - amount;
         Debug.Log("Health decrease: " + amount);
-        if (_currentHealth < 0)
+        if (_currentHealth < 0f)
         {
-            _currentHealth = 0;
+            _currentHealth = 0f;
         }
         _hit = true;
     }
 
     // Method that increases the character's life
-    public void IncreaseLife(int amount)
+    public void IncreaseLife(float amount)
     {
-        _currentHealth += amount;
+        _currentHealth = _currentHealth + amount;
         Debug.Log("Health increase: " + amount);
         if (_currentHealth > _maxHealth)
         {
@@ -60,7 +66,11 @@ public class Health : MonoBehaviour, IHealth
         _hit = false;
     }
 
-    public void Initialize(int maxHealth, int currentHealth)
+    public float GetFillAmount()
+    {
+        return _HfillAmount;
+    }
+    public void Initialize(float maxHealth, float currentHealth)
     {
         _maxHealth = maxHealth;
         _currentHealth = currentHealth;

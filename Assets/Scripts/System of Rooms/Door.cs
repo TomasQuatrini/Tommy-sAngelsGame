@@ -6,9 +6,7 @@ public class Door : MonoBehaviour
 {
     public GameObject destination; // level destine
     public bool isLocked = false; // state of door
-    public string keyId = "lvl1";
     public int selectedSpawnIndex;
-    public Inventory inventory;
     private Transform[] _spawnPoints;
     private string _spawnContainerName = "Spawn";
 

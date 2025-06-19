@@ -29,7 +29,7 @@ public class Lvl1 : MonoBehaviour
         // Si la llave fue destruida, iniciar temporizador
         if (_keyWasSpawned && key == null && !_initTiming)
         {
-            InitT();
+            //InitT();
         }
 
         // Tick del temporizador

@@ -101,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 26
+        y: 39
         width: 13
         height: 13
       alignment: 0
@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 13
-        y: 26
+        y: 39
         width: 13
         height: 13
       alignment: 0
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 26
-        y: 26
+        y: 39
         width: 13
         height: 13
       alignment: 0
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 39
-        y: 26
+        y: 39
         width: 13
         height: 13
       alignment: 0
@@ -185,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 13
+        y: 26
         width: 13
         height: 13
       alignment: 0
@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 13
-        y: 13
+        y: 26
         width: 13
         height: 13
       alignment: 0
@@ -227,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 26
-        y: 13
+        y: 26
         width: 13
         height: 13
       alignment: 0
@@ -248,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 39
-        y: 13
+        y: 26
         width: 13
         height: 13
       alignment: 0
@@ -269,7 +269,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 13
         width: 13
         height: 13
       alignment: 0
@@ -290,7 +290,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 13
-        y: 0
+        y: 13
         width: 13
         height: 13
       alignment: 0
@@ -311,7 +311,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 26
-        y: 0
+        y: 13
         width: 13
         height: 13
       alignment: 0
@@ -332,7 +332,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 39
-        y: 0
+        y: 13
         width: 13
         height: 13
       alignment: 0
@@ -344,6 +344,90 @@ TextureImporter:
       bones: []
       spriteID: b803a8b06586df448b56dde9e51f77ad
       internalID: -591966777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bordes_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6212ed7f6e6b85d448228e50c550b031
+      internalID: -1554220640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bordes_13
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151a8bd57db718e459d4453242f4d882
+      internalID: 1759424463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bordes_14
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75bdfad75687454895d0bdcd3e6ce53
+      internalID: 1551348380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bordes_15
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27847047a4dcf5f409891800edc06e7b
+      internalID: -533031154
       vertices: []
       indices: 
       edges: []
@@ -363,6 +447,10 @@ TextureImporter:
       Bordes_1: 916499160
       Bordes_10: -1667582146
       Bordes_11: -591966777
+      Bordes_12: -1554220640
+      Bordes_13: 1759424463
+      Bordes_14: 1551348380
+      Bordes_15: -533031154
       Bordes_2: -1291088688
       Bordes_3: 420611887
       Bordes_4: -273235755

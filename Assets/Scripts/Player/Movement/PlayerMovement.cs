@@ -58,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
         _movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
+    public Vector2 GetInput()
+    {
+        return _movementInput.normalized;
+    }
+
     // Move player based on input.
     private void MovePlayer()
     {

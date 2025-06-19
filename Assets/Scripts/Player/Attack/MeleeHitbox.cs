@@ -4,35 +4,26 @@ using UnityEngine;
 
 public class MeleeHitbox : MonoBehaviour
 {
-    // Damage dealt to enemies
-    public int damage = 10;
-
-    // Offset for horizontal and vertical movements
-    public float offsetHorizontal = 0.5f;
-    public float offsetVertical = 0.7f;
-
-    // Reference to the player attack script
     public PlayerAttack playerAttack;
+    private PlayerMovement _playerMovement;
+    private float _offsetH = 0.5f;
+    private float _offsetV = 1f;
+    private Transform _transform;
+    private SpriteRenderer _sprite;
+    private Rigidbody2D _rigidbodyPlayer;
 
-    // Last movement direction
-    private Vector2 _lastMovementDirection;
+    private Vector2 _input;
 
-    // Last hitbox position
-    private Vector3 _lastDirection = new Vector3(0, 0.7f, 0);
-
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+        _rigidbodyPlayer = GetComponentInParent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
+        _playerMovement = GetComponentInParent<PlayerMovement>();
+    }
     private void Update()
     {
-        // Get the input direction
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-
-        // Update the last movement direction
-        if (horizontalInput != 0 || verticalInput != 0)
-        {
-            _lastMovementDirection = new Vector2(horizontalInput, verticalInput).normalized;
-        }
-
-        // Update the hitbox position
+        _input = _playerMovement.GetInput();
         UpdateHitboxPosition();
     }
 
@@ -45,35 +36,31 @@ public class MeleeHitbox : MonoBehaviour
         }
     }
 
-    private Vector3 GetDirection(Vector2 direction)
+    public void UpdateHitboxPosition()
     {
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (_input.x > Mathf.Abs(_input.y))
         {
-            if (direction.x > 0)
-            {
-                return new Vector3(offsetHorizontal, 0, 0);
-            }
-            else
-            {
-                return new Vector3(-offsetHorizontal, 0, 0);
-            }
+            _sprite.sortingOrder = -1;
+            _transform.localPosition = new Vector3(_offsetH, -0.16f, 0);
+            _transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (_input.x < -Mathf.Abs(_input.y))
+        {
+            _sprite.sortingOrder = -1;
+            _transform.localPosition = new Vector3(-_offsetH, -0.16f, 0);
+            _transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (_input.y > Mathf.Abs(_input.x))
+        {
+            _sprite.sortingOrder = -1;
+            _transform.localPosition = new Vector3(0, _offsetV, 0);
+            _transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
-            if (direction.y > 0)
-            {
-                return new Vector3(0, offsetVertical, 0);
-            }
-            else
-            {
-                return new Vector3(0, -offsetVertical, 0);
-            }
+            _sprite.sortingOrder = 1;
+            _transform.localPosition = new Vector3(0, -_offsetV, 0);
+            _transform.rotation = Quaternion.Euler(0, 0, -90);
         }
-    }
-
-    public void UpdateHitboxPosition()
-    {
-        _lastDirection = GetDirection(_lastMovementDirection);
-        transform.localPosition = _lastDirection;
     }
 }

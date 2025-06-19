@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
-    // Reference to the key scriptable object
-    public Key key;
-
-    // Reference to the player's inventory
-    public Inventory inventory;
     public int numberDoors = 1;
     public Door door1;
     public Door door2;
+    public Door door3;
     // Called when the player collides with the key
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the collision is with the player
         if (collision.gameObject.tag == "Player")
         {
-            // Add the key to the player's inventory
-            inventory.AddItem(key);
             // Destroy the key GameObject
             Destroy(gameObject);
             door1.Unlocked();
             if (numberDoors == 2)
             {
                 door2.Unlocked();
+            }
+            if (numberDoors == 3)
+            {
+                door2.Unlocked();
+                door3.Unlocked();
             }            
         }
     }

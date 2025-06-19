@@ -6,10 +6,6 @@ public class EnemyMeleeHealth : MonoBehaviour
 {
     // Reference to the enemy's health
     [SerializeField] Health health;
-    [SerializeField] HealthBarEnemies healthBarEnemies;
-    [SerializeField] private float _currentHealth;
-    [SerializeField] private float _maxHealth;
-
     private void Start()
     {
         // Get the Health component attached to this game object
@@ -28,8 +24,6 @@ public class EnemyMeleeHealth : MonoBehaviour
 
     void Update()
     {        
-        CurrentHealth();
-        SetHealthBar();
         CheckDead();        
     }
 
@@ -49,17 +43,6 @@ public class EnemyMeleeHealth : MonoBehaviour
     public IHealth GetHealth()
     {
         return health;
-    }
-
-    public void CurrentHealth()
-    {
-        _currentHealth = health.CurrentHealth;
-        _maxHealth = health.MaxHealth;
-    }
-
-    private void SetHealthBar()
-    {
-        healthBarEnemies.UpdateHealthbar(_maxHealth, _currentHealth);
     }
 
     private void CheckDead()

@@ -25,14 +25,9 @@ public class PlayerAttack : MonoBehaviour
     // Perform an attack on a target.
     public void Attack(GameObject target)
     {
-        EnemyMeleeHealth enemyHealth = target.GetComponent<EnemyMeleeHealth>();
-        if (enemyHealth == null)
-        {
-            Debug.LogError("Target does not have an EnemyMeleeHealth component");
-            return;
-        }
+        Health health = target.GetComponent<Health>();
 
-        if (enemyHealth.GetHealth() == null)
+        if (health == null)
         {
             Debug.LogError("Target does not have a health component");
             return;
@@ -44,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
             return ;
         }
 
-        meleeAttack.Attack(gameObject, target, enemyHealth.GetHealth(), damageMelee);
+        meleeAttack.Attack(gameObject, target, health, damageMelee);
     }
 
     // Handle player input.

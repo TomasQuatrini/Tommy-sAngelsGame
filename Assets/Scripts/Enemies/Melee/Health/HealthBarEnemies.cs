@@ -5,10 +5,27 @@ using UnityEngine.UI;
 
 public class HealthBarEnemies : MonoBehaviour
 {
-    [SerializeField] Image barImage;
+    [SerializeField]private Image barImage;
+    private Health _health;
 
-    public void UpdateHealthbar(float maxHealth, float health)
+    private float _fillAmount;
+
+    void Start()
     {
-        barImage.fillAmount = health / maxHealth;
+        if (barImage == null)
+        {
+            Debug.LogError("No se encuentra Image");
+        }
+        _health = GetComponentInParent<Health>();
+        if (_health == null)
+        {
+            Debug.LogError("No se encuentra Health");
+        }
+    }
+    
+    void Update()
+    {
+        _fillAmount = _health.GetFillAmount();
+        barImage.fillAmount = _fillAmount;
     }
 }
